@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="teacher-dashboard.html" class="navbar-brand">📚 Teacher Portal</a>
+            <div class="navbar-links">
+                <a href="teacher-dashboard.html">Dashboard</a>
+                <button class="btn btn-danger" onclick="logout()" style="padding: 8px 16px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2 id="examTitle"></h2>
+                <p style="color: var(--gray);" id="examDescription"></p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h3 style="font-size: 36px; margin-bottom: 10px;" id="totalAttempts">0</h3>
+                    <p>Total Attempts</p>
+                </div>
+                <div class="card text-center" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <h3 style="font-size: 36px; margin-bottom: 10px;" id="averageScore">0%</h3>
+                    <p>Average Score</p>
+                </div>
+                <div class="card text-center" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                    <h3 style="font-size: 36px; margin-bottom: 10px;" id="highestScore">0%</h3>
+                    <p>Highest Score</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>📊 Student Results</h2>
+            </div>
+            <div id="resultsList"></div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/exam-results.js"></script>
+</body>
+</html>

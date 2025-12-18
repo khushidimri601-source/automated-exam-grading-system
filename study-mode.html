@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Mode - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="student-dashboard.html" class="navbar-brand">📚 Study Mode</a>
+            <div class="navbar-links">
+                <button class="btn btn-primary" onclick="window.location.href='student-dashboard.html'">Back to Dashboard</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card" style="max-width: 900px; margin: 0 auto;">
+            <div class="card-header">
+                <h2 id="examTitle"></h2>
+                <p style="color: var(--gray);" id="examDescription"></p>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <form id="studyForm">
+                <div id="questionsContainer"></div>
+
+                <div class="grid grid-3 mt-3">
+                    <button type="button" class="btn btn-outline" onclick="window.location.href='student-dashboard.html'">Back</button>
+                    <button type="button" class="btn btn-primary" onclick="checkStudyAnswers()">Check Answers</button>
+                    <button type="button" class="btn btn-success" onclick="saveStudyAttempt()">Save Progress</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/study-mode.js"></script>
+    <script>
+        loadStudyMode();
+    </script>
+</body>
+</html>
+

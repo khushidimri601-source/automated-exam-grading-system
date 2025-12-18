@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="navbar-brand" id="navBrand">📬 Notifications</a>
+            <div class="navbar-links">
+                <button class="btn btn-primary" onclick="goBack()" style="padding: 8px 16px;">Back</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mb-3">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">📬 Notifications</h2>
+                    <p style="color: var(--gray);">Stay updated with exam announcements and deadlines</p>
+                </div>
+                <div>
+                    <button class="btn btn-success" onclick="markAllAsRead()">Mark All as Read</button>
+                    <button class="btn btn-primary" onclick="requestNotificationPermission()">Enable Browser Notifications</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div id="notificationsContainer"></div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/notifications.js"></script>
+    <script>
+        function goBack() {
+            const user = getCurrentUser();
+            if (user.role === 'teacher') {
+                window.location.href = 'teacher-dashboard.html';
+            } else {
+                window.location.href = 'student-dashboard.html';
+            }
+        }
+        loadNotifications();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Exam - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="student-dashboard.html" class="navbar-brand">📚 Student Portal</a>
+            <div class="navbar-links">
+                <span id="timerDisplay" style="color: var(--danger-color); font-weight: 700; font-size: 18px;">⏱️ 00:00</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card" style="max-width: 900px; margin: 0 auto;">
+            <div class="card-header">
+                <h2 id="examTitle"></h2>
+                <p style="color: var(--gray);" id="examDescription"></p>
+            </div>
+
+            <div class="alert alert-info mb-3">
+                <strong>Instructions:</strong> Answer all questions and click "Submit Exam" when finished. You cannot change your answers after submission.
+            </div>
+
+            <form id="examForm">
+                <div id="questionsContainer"></div>
+
+                <div class="grid grid-2 mt-3">
+                    <button type="button" class="btn btn-outline" onclick="confirmCancel()">Cancel</button>
+                    <button type="submit" class="btn btn-success">Submit Exam</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/take-exam.js"></script>
+</body>
+</html>

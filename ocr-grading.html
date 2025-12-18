@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR-Based Exam Grading - Exam Grade Flow</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 OCR-Based Exam Grading</h1>
+            <p>Upload scanned answer sheets to automatically extract and grade student answers</p>
+        </header>
+
+        <nav class="breadcrumb">
+            <a href="teacher-dashboard.html">← Back to Dashboard</a>
+        </nav>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Step 1: Select Exam</h2>
+            </div>
+            <div class="form-group">
+                <label for="examSelect">Choose Exam:</label>
+                <select id="examSelect" class="form-control" onchange="loadExamQuestions()">
+                    <option value="">-- Select an Exam --</option>
+                </select>
+            </div>
+            <div id="examInfo" style="display: none; margin-top: 15px; padding: 15px; background: var(--card-bg); border-radius: 8px;">
+                <h3>Exam Details</h3>
+                <p id="examDetails"></p>
+            </div>
+        </div>
+
+        <div class="card" id="uploadCard" style="display: none;">
+            <div class="card-header">
+                <h2>Step 2: Upload Scanned Answer Sheet</h2>
+            </div>
+            <div class="form-group">
+                <label for="answerSheetFile">Answer Sheet (Image or PDF):</label>
+                <input type="file" id="answerSheetFile" class="form-control" accept=".pdf,.png,.jpg,.jpeg,.tiff,.bmp,.gif">
+                <small class="form-text">Supported formats: PDF, PNG, JPG, JPEG, TIFF, BMP, GIF</small>
+            </div>
+            <div class="form-group">
+                <label for="ocrLang">OCR Language:</label>
+                <select id="ocrLang" class="form-control">
+                    <option value="eng">English</option>
+                    <option value="fra">French</option>
+                    <option value="spa">Spanish</option>
+                    <option value="deu">German</option>
+                    <option value="hin">Hindi</option>
+                    <option value="chi_sim">Chinese (Simplified)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="minConfidence">Minimum OCR Confidence (%):</label>
+                <input type="number" id="minConfidence" class="form-control" value="30" min="0" max="100">
+                <small class="form-text">Lower values allow grading even with unclear scans (may reduce accuracy)</small>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="processOCRGrading()">🔍 Process & Grade Answer Sheet</button>
+        </div>
+
+        <div id="processingStatus" style="display: none;" class="card">
+            <div class="card-header">
+                <h2>Processing...</h2>
+            </div>
+            <div style="text-align: center; padding: 20px;">
+                <div class="spinner"></div>
+                <p id="statusMessage">Extracting text from answer sheet...</p>
+            </div>
+        </div>
+
+        <div id="resultsCard" style="display: none;" class="card">
+            <div class="card-header">
+                <h2>Grading Results</h2>
+            </div>
+            <div id="resultsSummary" style="margin-bottom: 20px; padding: 15px; background: var(--card-bg); border-radius: 8px;"></div>
+            <div id="resultsDetails"></div>
+            <div style="margin-top: 20px;">
+                <button type="button" class="btn btn-success" onclick="saveResults()">💾 Save Results</button>
+                <button type="button" class="btn btn-secondary" onclick="exportResults()">📥 Export Results</button>
+                <button type="button" class="btn btn-outline" onclick="resetForm()">🔄 Grade Another Sheet</button>
+            </div>
+        </div>
+
+        <div id="alertContainer" style="margin-top: 20px;"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/ocr-grading.js"></script>
+</body>
+</html>
+

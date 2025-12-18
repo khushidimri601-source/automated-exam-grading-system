@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="student-dashboard.html" class="navbar-brand">📚 Student Portal</a>
+            <div class="navbar-links">
+                <a href="notifications.html">📬 <span id="notificationBadge" style="display: none; background: var(--danger-color); color: white; padding: 2px 6px; border-radius: 10px; font-size: 12px;">0</span></a>
+                <a href="settings.html">Settings</a>
+                <button class="btn btn-secondary dark-mode-toggle" onclick="toggleDarkMode()" style="padding: 8px 16px;">🌙 Dark Mode</button>
+                <span id="userName" style="color: var(--gray);"></span>
+                <button class="btn btn-danger" onclick="logout()" style="padding: 8px 16px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mb-3">
+            <h2 style="color: var(--secondary-color); margin-bottom: 10px;">👋 Welcome, Student!</h2>
+            <p style="color: var(--gray);">View available exams, track your progress, and upload written answer sheets.</p>
+        </div>
+
+        <div class="grid grid-3 mb-3">
+            <div class="card text-center" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white;">
+                <h3 style="font-size: 36px; margin-bottom: 10px;" id="availableExams">0</h3>
+                <p>Available Exams</p>
+            </div>
+            <div class="card text-center" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); color: white;">
+                <h3 style="font-size: 36px; margin-bottom: 10px;" id="completedExams">0</h3>
+                <p>Completed</p>
+            </div>
+            <div class="card text-center" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: var(--dark);">
+                <h3 style="font-size: 36px; margin-bottom: 10px;" id="averageScore">0%</h3>
+                <p>Average Score</p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2>📝 Available Exams</h2>
+            </div>
+            <div id="examsList"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>📊 My Results</h2>
+            </div>
+            <div id="resultsList"></div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/study-mode.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/student-dashboard.js"></script>
+    <script>
+        // Load notifications on dashboard
+        if (typeof loadNotifications === 'function') {
+            loadNotifications();
+        }
+    </script>
+</body>
+</html>

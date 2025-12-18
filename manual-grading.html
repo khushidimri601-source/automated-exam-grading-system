@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Grading - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="teacher-dashboard.html" class="navbar-brand">📝 Manual Grading</a>
+            <div class="navbar-links">
+                <a href="teacher-dashboard.html">Dashboard</a>
+                <button class="btn btn-danger" onclick="logout()" style="padding: 8px 16px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mb-3">
+            <h2 style="color: var(--primary-color); margin-bottom: 10px;">Manual Grading</h2>
+            <p style="color: var(--gray);">Grade essay questions and provide feedback</p>
+        </div>
+
+        <div class="card mb-3">
+            <div>
+                <strong>Student:</strong> <span id="studentName"></span><br>
+                <strong>Exam:</strong> <span id="examTitle"></span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div id="essayQuestions"></div>
+            <div class="mt-3">
+                <button class="btn btn-success" onclick="saveGrading()">Save Grading</button>
+                <button class="btn btn-outline" onclick="window.location.href='teacher-dashboard.html'">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/manual-grading.js"></script>
+    <script>
+        loadGradingInterface();
+    </script>
+</body>
+</html>
+

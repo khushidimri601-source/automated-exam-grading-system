@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Bank - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="teacher-dashboard.html" class="navbar-brand">📚 Question Bank</a>
+            <div class="navbar-links">
+                <a href="teacher-dashboard.html">Dashboard</a>
+                <button class="btn btn-danger" onclick="logout()" style="padding: 8px 16px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mb-3">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">📚 Question Bank</h2>
+                    <p style="color: var(--gray);">Manage your reusable question library</p>
+                </div>
+                <div>
+                    <button class="btn btn-danger" style="margin-right: 10px;" onclick="clearQuestionBank()">Clear Bank</button>
+                    <button class="btn btn-success" onclick="window.location.href='create-exam.html'">Back to Create Exam</button>
+                    <button class="btn btn-primary" onclick="importQuestions()">Import Questions</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 10px; text-align: right; font-size: 14px; color: var(--gray); display: flex; justify-content: flex-end; gap: 16px; flex-wrap: wrap;">
+                <div>
+                    <span style="margin-right: 8px;">Import mode:</span>
+                    <label style="margin-right: 10px; cursor: pointer;">
+                        <input type="radio" name="importMode" value="merge" checked style="margin-right: 4px;">
+                        Merge (add to existing)
+                    </label>
+                    <label style="cursor: pointer;">
+                        <input type="radio" name="importMode" value="replace" style="margin-right: 4px;">
+                        Replace existing bank
+                    </label>
+                </div>
+                <div>
+                    <label style="cursor: pointer;">
+                        <input type="checkbox" id="formatToggle" onchange="toggleFormatting()" style="margin-right: 4px;">
+                        Auto-fix spacing
+                    </label>
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 14px; margin-left: 8px;" onclick="fixSpacingNow()">Fix spacing now</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <div class="card mb-3">
+            <div class="form-group">
+                <label>Search & Filter</label>
+                <div class="grid grid-3">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search questions..." onkeyup="filterQuestions()">
+                    <select id="categoryFilter" class="form-control" onchange="filterQuestions()">
+                        <option value="">All Categories</option>
+                    </select>
+                    <select id="typeFilter" class="form-control" onchange="filterQuestions()">
+                        <option value="">All Types</option>
+                        <option value="multiple_choice">Multiple Choice</option>
+                        <option value="true_false">True/False</option>
+                        <option value="short_answer">Short Answer</option>
+                        <option value="essay">Essay</option>
+                        <option value="multiple_select">Multiple Select</option>
+                        <option value="fill_blank">Fill in the Blank</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div id="questionBankContainer"></div>
+        </div>
+    </div>
+
+    <!-- Edit modal -->
+    <div id="editModalOverlay" class="modal-overlay hidden">
+        <div class="modal">
+            <h3 style="margin-bottom: 12px; color: var(--primary-color);">Edit Question</h3>
+            <div class="form-group">
+                <label>Question text</label>
+                <textarea id="editQuestionText" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Category (optional)</label>
+                    <input id="editCategory" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label>Points</label>
+                    <input id="editPoints" class="form-control" type="number" min="1" value="1">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeEditModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveEdit()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/question-bank.js"></script>
+</body>
+</html>
+

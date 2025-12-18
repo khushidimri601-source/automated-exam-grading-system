@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Result - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="navbar-brand" id="navBrand">📚 Exam Results</a>
+            <div class="navbar-links">
+                <button class="btn btn-primary" onclick="goBack()" style="padding: 8px 16px;">Back to Dashboard</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card text-center mb-3" style="max-width: 600px; margin: 0 auto;">
+            <h2 style="color: var(--primary-color); margin-bottom: 20px;" id="examTitle"></h2>
+            
+            <div id="scoreCircle" class="score-circle"></div>
+            
+            <h3 id="resultMessage" style="margin-bottom: 10px;"></h3>
+            <p style="color: var(--gray);" id="resultSubtitle"></p>
+            
+            <div class="grid grid-3 mt-3">
+                <div>
+                    <h4 style="color: var(--success-color);" id="correctCount">0</h4>
+                    <p style="color: var(--gray); font-size: 14px;">Correct</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--danger-color);" id="incorrectCount">0</h4>
+                    <p style="color: var(--gray); font-size: 14px;">Incorrect</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary-color);" id="totalCount">0</h4>
+                    <p style="color: var(--gray); font-size: 14px;">Total</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="max-width: 900px; margin: 0 auto;">
+            <div class="card-header">
+                <h2>📝 Detailed Review</h2>
+            </div>
+            <div id="answersContainer"></div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/result.js"></script>
+</body>
+</html>

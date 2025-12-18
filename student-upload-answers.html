@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Written Answer Sheet - Student</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="student-dashboard.html" class="navbar-brand">📚 Student Portal</a>
+            <div class="navbar-links">
+                <a href="student-dashboard.html">Dashboard</a>
+                <a href="settings.html">Settings</a>
+                <button class="btn btn-secondary dark-mode-toggle" onclick="toggleDarkMode()" style="padding: 8px 16px;">🌙 Dark Mode</button>
+                <span id="userName" style="color: var(--gray);"></span>
+                <button class="btn btn-danger" onclick="logout()" style="padding: 8px 16px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mb-3">
+            <h2 style="color: var(--secondary-color); margin-bottom: 10px;">📝 Upload Written Answer Sheet</h2>
+            <p style="color: var(--gray);">
+                Upload your scanned answer sheet (PDF or image). The system will try to read your answers and show you a preview.
+                Your teacher will still review and finalize your marks.
+            </p>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3>Step 1: Select Exam</h3>
+            </div>
+            <div class="form-group">
+                <label for="examSelect">Choose Exam:</label>
+                <select id="examSelect" class="form-control"></select>
+            </div>
+        </div>
+
+        <div class="card mb-3" id="uploadCard" style="display: none;">
+            <div class="card-header">
+                <h3>Step 2: Upload Answer Sheet (PDF/Image)</h3>
+            </div>
+            <div class="form-group">
+                <label for="answerSheetFile">Answer Sheet (Image or PDF):</label>
+                <input type="file" id="answerSheetFile" class="form-control" accept=".pdf,.png,.jpg,.jpeg,.tiff,.bmp,.gif">
+                <small class="form-text">Make sure your handwriting is clear and the scan is readable.</small>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="studentProcessOCR()">📤 Upload and Preview</button>
+        </div>
+
+        <div class="card mb-3" id="questionsCard" style="display: none;">
+            <div class="card-header">
+                <h3>Exam Questions</h3>
+            </div>
+            <div id="questionsPreview"></div>
+        </div>
+
+        <div id="processingStatus" style="display: none;" class="card">
+            <div class="card-header">
+                <h3>Processing...</h3>
+            </div>
+            <div style="text-align: center; padding: 20px;">
+                <div class="loading"></div>
+                <p id="statusMessage">Reading your answer sheet...</p>
+            </div>
+        </div>
+
+        <div id="resultsCard" style="display: none;" class="card">
+            <div class="card-header">
+                <h3>Preview of Detected Answers</h3>
+            </div>
+            <div id="resultsSummary" style="margin-bottom: 20px; padding: 15px; background: var(--card-bg); border-radius: 8px;"></div>
+            <div id="resultsDetails"></div>
+            <p style="color: var(--gray); margin-top: 15px;">
+                This is an automatic preview. Your teacher will review and finalize your marks.
+            </p>
+        </div>
+
+        <div id="alertContainer" style="margin-top: 20px;"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/student-upload-answers.js"></script>
+</body>
+</html>

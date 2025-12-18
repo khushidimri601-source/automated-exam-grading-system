@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="navbar-brand" id="navBrand">⚙️ Settings</a>
+            <div class="navbar-links">
+                <button class="btn btn-primary" onclick="goBack()" style="padding: 8px 16px;">Back</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mb-3">
+            <h2 style="color: var(--primary-color); margin-bottom: 10px;">⚙️ Settings</h2>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3>Appearance</h3>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-secondary dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3>Change Password</h3>
+            </div>
+            <form id="changePasswordForm">
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" id="currentPassword" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" id="newPassword" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" id="confirmPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success">Change Password</button>
+            </form>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3>Data Management</h3>
+            </div>
+            <div class="grid grid-2">
+                <button class="btn btn-primary" onclick="exportAllData()">Export All Data</button>
+                <button class="btn btn-warning" onclick="importData()">Import Data</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Account</h3>
+            </div>
+            <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+        </div>
+    </div>
+
+    <div id="alertContainer"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/export-import.js"></script>
+    <script src="js/password-reset.js"></script>
+    <script>
+        function goBack() {
+            const user = getCurrentUser();
+            if (user.role === 'teacher') {
+                window.location.href = 'teacher-dashboard.html';
+            } else {
+                window.location.href = 'student-dashboard.html';
+            }
+        }
+
+        document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const current = document.getElementById('currentPassword').value;
+            const newPass = document.getElementById('newPassword').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            
+            if (newPass !== confirm) {
+                showAlert('New passwords do not match!', 'error');
+                return;
+            }
+            
+            if (changePassword(current, newPass)) {
+                document.getElementById('changePasswordForm').reset();
+            }
+        });
+
+        function deleteAccount() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone!')) {
+                const user = getCurrentUser();
+                let users = getUsers();
+                users = users.filter(u => u.id !== user.id);
+                saveUsers(users);
+                
+                logout();
+            }
+        }
+    </script>
+</body>
+</html>
+

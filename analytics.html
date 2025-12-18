@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics & Statistics - Exam Grading System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="teacher-dashboard.html" class="navbar-brand">📚 Teacher Portal</a>
+            <div class="navbar-links">
+                <a href="teacher-dashboard.html">Dashboard</a>
+                <a href="analytics.html" style="color: var(--primary-color);">Analytics</a>
+                <button class="btn btn-danger" onclick="logout()" style="padding: 8px 16px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mb-3">
+            <h2 style="color: var(--primary-color); margin-bottom: 10px;">📊 Analytics & Statistics</h2>
+            <p style="color: var(--gray);">Comprehensive overview of exams, students, and performance</p>
+        </div>
+
+        <div class="grid grid-3 mb-3">
+            <div class="card text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <h3 style="font-size: 48px; margin-bottom: 10px;" id="totalExams">0</h3>
+                <p style="font-size: 18px;">Total Exams Created</p>
+            </div>
+            <div class="card text-center" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                <h3 style="font-size: 48px; margin-bottom: 10px;" id="totalStudents">0</h3>
+                <p style="font-size: 18px;">Students Enrolled</p>
+            </div>
+            <div class="card text-center" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                <h3 style="font-size: 48px; margin-bottom: 10px;" id="totalAttempts">0</h3>
+                <p style="font-size: 18px;">Total Exam Attempts</p>
+            </div>
+        </div>
+
+        <div class="grid grid-2 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2>📝 Exams Overview</h2>
+                </div>
+                <div id="examsOverview"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>👥 Students Overview</h2>
+                </div>
+                <div id="studentsOverview"></div>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2>📈 Performance Statistics</h2>
+            </div>
+            <div class="grid grid-3 mb-2">
+                <div class="text-center">
+                    <div style="font-size: 36px; color: var(--success-color); font-weight: 700;" id="avgScore">0%</div>
+                    <p style="color: var(--gray);">Average Score</p>
+                </div>
+                <div class="text-center">
+                    <div style="font-size: 36px; color: var(--primary-color); font-weight: 700;" id="highestScore">0%</div>
+                    <p style="color: var(--gray);">Highest Score</p>
+                </div>
+                <div class="text-center">
+                    <div style="font-size: 36px; color: var(--warning-color); font-weight: 700;" id="lowestScore">0%</div>
+                    <p style="color: var(--gray);">Lowest Score</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>🎯 All Results</h2>
+            </div>
+            <div id="allResults"></div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/analytics.js"></script>
+</body>
+</html>
