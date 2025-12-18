@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Exam Automated Grading — Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Exam Automated Grading System</div>
+  </header>
+
+  <main class="main">
+    <!-- AUTH / HOME -->
+    <section id="home" class="card">
+      <div class="col-split">
+        <div>
+          <h2>Login / Register</h2>
+          <p class="muted">Select role, provide email & password. Sample accounts available.</p>
+
+          <label>Role</label>
+          <select id="auth-role">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+
+          <label>Email</label>
+          <input id="auth-email" type="email" placeholder="you@example.com" />
+
+          <label>Password</label>
+          <input id="auth-password" type="password" placeholder="password" />
+
+          <div class="btn-row">
+            <button id="btn-login" class="btn primary">Login</button>
+            <button id="btn-register" class="btn">Register</button>
+          </div>
+
+          <small class="muted mt">Sample teacher: <b>teacher@example.com / pass</b><br>
+          Sample student: <b>student@example.com / pass</b></small>
+        </div>
+
+        <div>
+          <h3>Prototype Info</h3>
+          <ul>
+            <li>Frontend-only: stores data in <code>localStorage</code></li>
+            <li>Teachers create exams and MCQs</li>
+            <li>Students take exams, timer runs, instant grading</li>
+            <li>Works offline in your browser</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHER DASHBOARD -->
+    <section id="teacher-dashboard" class="card hidden">
+      <div class="row-between">
+        <h2>Teacher Dashboard</h2>
+        <div>
+          <button id="btn-new-exam" class="btn primary">New Exam</button>
+          <button id="btn-logout-teacher" class="btn">Logout</button>
+        </div>
+      </div>
+
+      <div id="exams-list" class="list mt"></div>
+    </section>
+
+    <!-- EXAM EDITOR -->
+    <section id="exam-editor" class="card hidden">
+      <h2>Create / Edit Exam</h2>
+      <div class="form-grid">
+        <div>
+          <label>Exam Title</label>
+          <input id="exam-title" />
+        </div>
+        <div>
+          <label>Duration (minutes)</label>
+          <input id="exam-duration" type="number" min="1" value="20" />
+        </div>
+        <div>
+          <label>Total Marks (optional)</label>
+          <input id="exam-total" type="number" min="1" placeholder="auto" />
+        </div>
+      </div>
+
+      <hr />
+
+      <h3>Add MCQ</h3>
+      <textarea id="q-text" placeholder="Question text"></textarea>
+      <div class="grid-2">
+        <input id="q-a" placeholder="Option A" />
+        <input id="q-b" placeholder="Option B" />
+        <input id="q-c" placeholder="Option C" />
+        <input id="q-d" placeholder="Option D" />
+      </div>
+      <div class="form-grid">
+        <div>
+          <label>Correct Option</label>
+          <select id="q-correct">
+            <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+          </select>
+        </div>
+        <div>
+          <label>Marks</label>
+          <input id="q-marks" type="number" min="1" value="1" />
+        </div>
+      </div>
+
+      <div class="btn-row mt">
+        <button id="btn-add-q" class="btn">Add Question</button>
+        <button id="btn-save-exam" class="btn primary">Save Exam</button>
+        <button id="btn-cancel-exam" class="btn">Cancel</button>
+      </div>
+
+      <h4 class="mt">Questions Added</h4>
+      <div id="questions-added" class="list"></div>
+    </section>
+
+    <!-- STUDENT DASHBOARD -->
+    <section id="student-dashboard" class="card hidden">
+      <div class="row-between">
+        <h2>Student Dashboard</h2>
+        <div>
+          <button id="btn-logout-student" class="btn">Logout</button>
+        </div>
+      </div>
+      <div id="available-exams" class="list mt"></div>
+    </section>
+
+    <!-- TAKE EXAM -->
+    <section id="take-exam" class="card hidden">
+      <div class="row-between">
+        <h2 id="take-exam-title"></h2>
+        <div class="timer">Time left: <span id="time-left">00:00</span></div>
+      </div>
+      <div id="question-area" class="mt"></div>
+
+      <div class="btn-row mt">
+        <button id="prev-q" class="btn">Previous</button>
+        <button id="next-q" class="btn">Next</button>
+        <button id="submit-exam" class="btn danger">Submit</button>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result-page" class="card hidden">
+      <h2>Result</h2>
+      <div id="result-summary" class="result-box mt"></div>
+      <div id="result-answers" class="list mt"></div>
+      <div class="btn-row mt">
+        <button id="btn-back-dashboard" class="btn">Back to Dashboard</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>Prototype — frontend only. Data saved in browser localStorage.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
